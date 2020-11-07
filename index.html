@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node.js Documentation</title>
+  <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+  <nav id="navbar">
+    <header>Node.js Documentation</header>
+    <ul>
+      <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+      <li>
+        <a class="nav-link" href="#How_to_install_Node"
+          >How to install Node</a
+        >
+      </li>
+      <li>
+        <a class="nav-link" href="#What_You_Should_already_know">What You Should already know</a>
+      </li>
+      <li><a class="nav-link" href="#Run_Node_scripts_from_the_command_line">Run Node.js scripts from the command line</a></li>
+      <li><a class="nav-link" href="#How_to_read_environment_variables">How to read environment variables</a></li>
+      <li>
+        <a class="nav-link" href="#Node_hosting_options">Node hosting options</a>
+      </li>
+      <li><a class="nav-link" href="#Variable_scope">Variable scope</a></li>
+      <li><a class="nav-link" href="#Global_variables">Global variables</a></li>
+      <li><a class="nav-link" href="#Constants">Constants</a></li>
+      <li><a class="nav-link" href="#Data_types">Data types</a></li>
+      <li>
+        <a class="nav-link" href="#if...else_statement">if...else statement</a>
+      </li>
+      <li><a class="nav-link" href="#while_statement">while statement</a></li>
+      <li>
+        <a class="nav-link" href="#Function_declarations"
+          >Function declarations</a
+        >
+      </li>
+      <li><a class="nav-link" href="#Reference">Reference</a></li>
+    </ul>
+  </nav>
+
+
+  <main id="main-doc">
+    <section class="main-section" id="Introduction">
+      <header>Introduction</header>
+      <article>
+        <p>
+          Node.js is a runtime environment for JavaScript that runs on the server.
+Node.js is open source, cross-platform, and since its introduction in 2009, it got hugely popular
+and now plays a significant role in the web development scene. If GitHub stars are one
+popularity indication factor, having 46000+ stars means being very popular.
+        </p>
+      </article>
+    </section>
+
+    <section class="main-section" id="How_to_install_Node">
+      <header>How to install Node</header>
+      <article>
+        <p>
+          Node.js can be installed in different ways. This post highlights the most common and
+convenient ones.</p>
+<p> Official packages for all the major platforms are available at https://nodejs.org/en/download/.
+One very convenient way to install Node.js is through a package manager. In this case, every
+operating system has its own.
+</p>
+<p>On macOS, Homebrew is the de-facto standard, and - once installed - allows to install Node.js
+very easily, by running this command in the CLI:
+        </p>
+        <code>
+          brew install node
+        </code>
+  <p>
+    Other package managers for Linux and Windows are listed in
+https://nodejs.org/en/download/package-manager/</p>
+<p>
+nvm is a popular way to run Node. It allows you to easily switch the Node version, and install
+new versions to try and easily rollback if something breaks, for example.
+It is also very useful to test your code with old Node versions.
+</p>
+<p>
+See https://github.com/creationix/nvm for more information about this option.
+My suggestion is to use the official installer if you are just starting out and you don't use
+Homebrew already, otherwise, Homebrew is my favorite solution.
+In any case, when Node is installed you'll have access to the node executable program in the
+command line.
+  </p>
+       
+      </article>
+    </section>
+
+
+    <section class="main-section" id="What_You_Should_already_know">
+      <header>What You Should already know</header>
+      <article>
+        <p>
+          If you are just starting out with JavaScript, how much deeply do you need to
+know the language?
+        </p>
+        <p>
+As a beginner, it's hard to get to a point where you are confident enough in your programming
+abilities.</p>
+<p>
+While learning to code, you might also be confused at where does JavaScript end, and where
+Node.js begins, and vice versa.
+I would recommend you to have a good grasp of the main JavaScript concepts before diving
+into Node.js:
+        </p>
+  <ul>
+    <li>Lexical Structure</li>
+    <li>Expressions</li>
+<li> Types </li>
+<li> Variables </li>
+<li> Functions </li>
+<li> this </li>
+<li> Arrow Functions </li>
+<li> Loops </li>
+<li> Loops and Scope </li>
+<li> Arrays </li>
+<li> Template Literals </li>
+<li> Semicolons </li>
+<li> Strict Mode </li>
+<li> ECMAScript 6, 201 6, 201 7</li>
+  </ul>
+
+      </article>
+    </section>
+    <section class="main-section" id="Run_Node_scripts_from_the_command_line">
+      <header>Run Node.js scripts from the command line</header>
+      <article>
+        The usual way to run a Node program is to call the node globally available command (once
+you install Node) and pass the name of the file you want to execute.
+If your main Node application file is in app. j s , you can call it by typing
+        <code>
+        node app. j s
+        </code>
+  
+      </article>
+    </section>
+
+    <section class="main-section" id="How_to_read_environment_variables">
+      <header>How to read environment variables</header>
+      <p>
+        The process core module of Node provides the env property which hosts all the
+        environment variables that were set at the moment the process was started.
+        Here is an example that accesses the NODE_ENV environment variable, which is set to
+        development by default.
+      </p>
+      <code>
+        process. env. NODE_ENV // "development"
+      </code>
+      <p>
+        Setting it to "production" before the script runs will tell Node that this is a production
+environment.
+In the same way you can access any custom environment variable you set.
+      </p>
+    </section>
+
+    <section class="main-section" id="Node_hosting_options">
+      <header>Node hosting options</header>
+      <article>
+        A Node.js application can be hosted in a lot of places, depending on your
+needs. This is a list of all the various options you have at your disposal
+        <p>
+          Here is a non-exhaustive list of the options you can explore when you want to deploy your app
+and make it publicly accessible.
+I will list the options from simplest and constrained to more complex and powerful.
+        </p>
+        <ul>
+          <li>Simplest option ever: local tunnel</li>
+          <li>Zero configuration deployments
+          <ul>
+              <li>Glitch</li>
+              <li>Codepen</li>
+            </ul>
+        <li>Serverless</li>
+        <li>PAAS
+          <ul>
+            <li>Zeit Now </li>
+              <li>Nanobox </li>
+              <li>Heroku </li>
+              <li>Microsoft Azure </li>
+              <li>Google Cloud Platform</li>
+          </ul>
+        </li>
+        <li>Virtual Private Server </li>
+        <li>Bare metal </li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="main-section" id="Variable_scope">
+      <header>Pass arguments from the command line</header>
+      <article>
+        <p>
+          You can pass any number of arguments when invoking a Node.js application using
+        </p>
+        <code>
+          node app. j s
+        </code>
+        <p>
+          Arguments can be standalone or have a key and a value.
+For example:
+        </p>
+        <code>node app. j s Ekene</code>
+        <p>
+          This changes how you will retrieve this value in the Node code.
+          The way you retrieve it is using the process object built into Node.
+          It exposes an argv property, which is an array that contains all the command line invocation
+          arguments.
+          The first argument is the full path of the node command.
+          The second element is the full path of the file being executed.
+          All the additional arguments are present from the third position going forward.
+          You can iterate over all the arguments (including the node path and the file path) using a loop
+        </p>
+  
+        <code>
+          process. argv. forEach( ( val, index) => {
+            console. log( ` ${index}: ${val}` )
+            })
+        </code>
+        <p>
+          You can get only the additional arguments by creating a new array that excludes the first 2
+params:
+        </p>
+<code>
+  const args = process. argv. slice( 2)
+</code>
+
+<p>
+  If you have one argument without an index name, like this:
+</p>
+<code>node app. j s Ekene</code>
+
+
+
+
+
+      </article>
+    </section>
+    <section class="main-section" id="Global_variables">
+      <header>Global variables</header>
+      <article>
+        <p>
+          Global variables are in fact properties of the global object. In web
+          pages the global object is window, so you can set and access global
+          variables using the window.variable syntax.
+        </p>
+  
+        <p>
+          Consequently, you can access global variables declared in one window or
+          frame from another window or frame by specifying the window or frame
+          name. For example, if a variable called phoneNumber is declared in a
+          document, you can refer to this variable from an iframe as
+          parent.phoneNumber.
+        </p>
+      </article>
+    </section>
+    <section class="main-section" id="Constants">
+      <header>Constants</header>
+      <article>
+        <p>
+          You can create a read-only, named constant with the const keyword. The
+          syntax of a constant identifier is the same as for a variable
+          identifier: it must start with a letter, underscore or dollar sign and
+          can contain alphabetic, numeric, or underscore characters.
+        </p>
+  
+        <code>const PI = 3.14;</code>
+        <p>
+          A constant cannot change value through assignment or be re-declared
+          while the script is running. It has to be initialized to a value.
+        </p>
+  
+        <p>
+          The scope rules for constants are the same as those for let block scope
+          variables. If the const keyword is omitted, the identifier is assumed to
+          represent a variable.
+        </p>
+  
+        <p>
+          You cannot declare a constant with the same name as a function or
+          variable in the same scope. For example:
+        </p>
+  
+        <code
+          >// THIS WILL CAUSE AN ERROR function f() {}; const f = 5; // THIS WILL
+          CAUSE AN ERROR ALSO function f() { const g = 5; var g; //statements
+          }</code
+        >
+        However, object attributes are not protected, so the following statement
+        is executed without problems.
+        <code
+          >const MY_OBJECT = {"key": "value"}; MY_OBJECT.key = "otherValue";</code
+        >
+      </article>
+    </section>
+    <section class="main-section" id="Data_types">
+      <header>Data types</header>
+      <article>
+        <p>The latest ECMAScript standard defines seven data types:</p>
+        <ul>
+          <li>
+            <p>Six data types that are primitives:</p>
+            <ul>
+              <li>Boolean. true and false.</li>
+              <li>
+                null. A special keyword denoting a null value. Because JavaScript
+                is case-sensitive, null is not the same as Null, NULL, or any
+                other variant.
+              </li>
+              <li>undefined. A top-level property whose value is undefined.</li>
+              <li>Number. 42 or 3.14159.</li>
+              <li>String. "Howdy"</li>
+              <li>
+                Symbol (new in ECMAScript 2015). A data type whose instances are
+                unique and immutable.
+              </li>
+            </ul>
+          </li>
+  
+          <li>and Object</li>
+        </ul>
+        Although these data types are a relatively small amount, they enable you
+        to perform useful functions with your applications. Objects and functions
+        are the other fundamental elements in the language. You can think of
+        objects as named containers for values, and functions as procedures that
+        your application can perform.
+      </article>
+    </section>
+    <section class="main-section" id="if...else_statement">
+      <header>if...else statement</header>
+      <article>
+        Use the if statement to execute a statement if a logical condition is
+        true. Use the optional else clause to execute a statement if the condition
+        is false. An if statement looks as follows:
+  
+        <code>if (condition) { statement_1; } else { statement_2; }</code>
+        condition can be any expression that evaluates to true or false. See
+        Boolean for an explanation of what evaluates to true and false. If
+        condition evaluates to true, statement_1 is executed; otherwise,
+        statement_2 is executed. statement_1 and statement_2 can be any statement,
+        including further nested if statements.
+        <p>
+          You may also compound the statements using else if to have multiple
+          conditions tested in sequence, as follows:
+        </p>
+        <code
+          >if (condition_1) { statement_1; } else if (condition_2) { statement_2;
+          } else if (condition_n) { statement_n; } else { statement_last; }
+        </code>
+        In the case of multiple conditions only the first logical condition which
+        evaluates to true will be executed. To execute multiple statements, group
+        them within a block statement ({ ... }) . In general, it's good practice
+        to always use block statements, especially when nesting if statements:
+  
+        <code
+          >if (condition) { statement_1_runs_if_condition_is_true;
+          statement_2_runs_if_condition_is_true; } else {
+          statement_3_runs_if_condition_is_false;
+          statement_4_runs_if_condition_is_false; }</code
+        >
+        It is advisable to not use simple assignments in a conditional expression,
+        because the assignment can be confused with equality when glancing over
+        the code. For example, do not use the following code:
+        <code>if (x = y) { /* statements here */ }</code> If you need to use an
+        assignment in a conditional expression, a common practice is to put
+        additional parentheses around the assignment. For example:
+  
+        <code>if ((x = y)) { /* statements here */ }</code>
+      </article>
+    </section>
+    <section class="main-section" id="while_statement">
+      <header>while statement</header>
+      <article>
+        A while statement executes its statements as long as a specified condition
+        evaluates to true. A while statement looks as follows:
+  
+        <code>while (condition) statement</code> If the condition becomes false,
+        statement within the loop stops executing and control passes to the
+        statement following the loop.
+  
+        <p>
+          The condition test occurs before statement in the loop is executed. If
+          the condition returns true, statement is executed and the condition is
+          tested again. If the condition returns false, execution stops and
+          control is passed to the statement following while.
+        </p>
+  
+        <p>
+          To execute multiple statements, use a block statement ({ ... }) to group
+          those statements.
+        </p>
+  
+        Example:
+  
+        <p>The following while loop iterates as long as n is less than three:</p>
+  
+        <code>var n = 0; var x = 0; while (n &lt; 3) { n++; x += n; }</code>
+        <p>
+          With each iteration, the loop increments n and adds that value to x.
+          Therefore, x and n take on the following values:
+        </p>
+  
+        <ul>
+          <li>After the first pass: n = 1 and x = 1</li>
+          <li>After the second pass: n = 2 and x = 3</li>
+          <li>After the third pass: n = 3 and x = 6</li>
+        </ul>
+        <p>
+          After completing the third pass, the condition n &lt; 3 is no longer
+          true, so the loop terminates.
+        </p>
+      </article>
+    </section>
+    <section class="main-section" id="Function_declarations">
+      <header>Function declarations</header>
+      <article>
+        A function definition (also called a function declaration, or function
+        statement) consists of the function keyword, followed by:
+  
+        <ul>
+          <li>The name of the function.</li>
+          <li>
+            A list of arguments to the function, enclosed in parentheses and
+            separated by commas.
+          </li>
+          <li>
+            The JavaScript statements that define the function, enclosed in curly
+            brackets, { }.
+          </li>
+        </ul>
+        <p>
+          For example, the following code defines a simple function named square:
+        </p>
+  
+        <code>function square(number) { return number * number; }</code>
+        <p>
+          The function square takes one argument, called number. The function
+          consists of one statement that says to return the argument of the
+          function (that is, number) multiplied by itself. The return statement
+          specifies the value returned by the function.
+        </p>
+        <code>return number * number;</code>
+        <p>
+          Primitive parameters (such as a number) are passed to functions by
+          value; the value is passed to the function, but if the function changes
+          the value of the parameter, this change is not reflected globally or in
+          the calling function.
+        </p>
+      </article>
+    </section>
+    <section class="main-section" id="Reference">
+      <header>Reference</header>
+      <article>
+        <ul>
+          <li>
+            All the documentation in this page is taken from
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"
+              target="_blank"
+              >MDN</a
+            >
+          </li>
+        </ul>
+      </article>
+    </section>
+  </main>
+  
+</body>
+</html>
